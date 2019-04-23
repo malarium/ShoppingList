@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>ShoppingList</title>
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="styles.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+    <script src="https://unpkg.com/vue@2.6.10"></script>
+  </head>
+  <body>
+    <section id="app">
+      <h1>Twoja lista zakupów</h1>
+      <nav>
+        <div @click="toggleVisibility">Lista zakupów <br />({{ itNr }})</div>
+        <div @click="toggleVisibility">Koszyk <br />({{ bgNr }})</div>
+      </nav>
+      <div v-show="showList">
+        <!-- <h2 v-if="itNr !=0">Ilość rzeczy na liście: {{ itNr }}</h2> -->
+        <input placeholder="powiedz co chcesz kupić" v-model="newItem" />
+        <p>Testy: {{ newItem }}</p>
+        <button @click="submitted">Submit</button>
+        <template v-if="mockItems.length != 0">
+          <button @click="removeAll">Clear list</button>
+          <ul>
+            <template v-for="element in mockItems">
+              <li>
+                {{ element }}
+                <button @click="removeThis(element)">
+                  Delete this element
+                </button>
+                <button @click="haveThis(element)">
+                  Already got that
+                </button>
+              </li>
+            </template>
+          </ul>
+        </template>
+      </div>
+      <div v-show="!showList">
+        <template v-if="bgNr != 0">
+          <!-- <h2>Ilość kupionych rzeczy: {{ bgNr }}</h2> -->
+          <button @click="removeAllBought">Clear list</button>
+          <ul>
+            <template v-for="element in boughtItems">
+              <li>
+                {{ element }}
+                <button @click="removeBought(element)">
+                  I didn't buy after all
+                </button>
+              </li>
+            </template>
+          </ul>
+        </template>
+      </div>
+    </section>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>
