@@ -14,8 +14,8 @@
     <section id="app">
       <h1>Twoja lista zakupów</h1>
       <nav>
-        <div @click="toggleVisibilityList">Lista zakupów <br />({{ itNr }})</div>
-        <div @click="toggleVisibilityCart">Koszyk <br />({{ bgNr }})</div>
+        <div class="mainButtons list" @click="toggleVisibility($event)">Lista zakupów <br />({{ itNr }})</div>
+        <div class="mainButtons cart" @click="toggleVisibility($event)">Koszyk <br />({{ bgNr }})</div>
       </nav>
       <div v-show="showList">
         <!-- <h2 v-if="itNr !=0">Ilość rzeczy na liście: {{ itNr }}</h2> -->
@@ -31,7 +31,7 @@
                 <button @click="removeThis(element)">
                   Delete this element
                 </button>
-                <button @click="haveThis(element)">
+                <button @click="haveThis(element, $event)">
                   Already got that
                 </button>
               </li>

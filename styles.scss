@@ -3,13 +3,21 @@
     font-size: 1.5rem;
     font-weight: 700;
 }
+.mainButtons{
+    font-weight: 400;
+    font-size:1.5rem;
+}
+.boldText{
+    font-weight: 700;
+    font-size:1.8rem;
+}
+
 nav {
   display: flex;
   align-items: center;
   div {
-    border: 1px solid black;
     width: calc(98vw/2);
-    padding: 25px 10px;
+    padding: 15px 10px;
     text-align: center;
   }
 }
@@ -32,4 +40,11 @@ ul{
             margin: 0 10px;
         }
     }
+}
+@keyframes toCart {
+    from { opacity:1 }
+    to{ opacity:0; }
+}
+.addToCart{
+    animation: toCart 1s forwards;
 }
