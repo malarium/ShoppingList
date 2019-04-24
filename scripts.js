@@ -3,6 +3,7 @@ new Vue({
   data: {
     newItem: "",
     showList: true,
+    showCart: false,
     mockItems: ['ser', 'mleko', 'woda', 'chleb', 'bułki'],
     // mockItems: [],
     boughtItems:['wino', 'zapałki', 'serwetki'],
@@ -41,8 +42,13 @@ new Vue({
       this.newItem = el;
       this.submitted();
     },
-    toggleVisibility: function() {
-      this.showList = !this.showList;
-    }
+    toggleVisibilityList: function() {
+      this.showList = true;
+      this.showCart = false;
+    },
+    toggleVisibilityCart: function() {
+      this.showList = false;
+      this.showCart = true;
+    },
   }
 });

@@ -14,8 +14,8 @@
     <section id="app">
       <h1>Twoja lista zakupów</h1>
       <nav>
-        <div @click="toggleVisibility">Lista zakupów <br />({{ itNr }})</div>
-        <div @click="toggleVisibility">Koszyk <br />({{ bgNr }})</div>
+        <div @click="toggleVisibilityList">Lista zakupów <br />({{ itNr }})</div>
+        <div @click="toggleVisibilityCart">Koszyk <br />({{ bgNr }})</div>
       </nav>
       <div v-show="showList">
         <!-- <h2 v-if="itNr !=0">Ilość rzeczy na liście: {{ itNr }}</h2> -->
@@ -39,7 +39,7 @@
           </ul>
         </template>
       </div>
-      <div v-show="!showList">
+      <div v-show="showCart">
         <template v-if="bgNr != 0">
           <!-- <h2>Ilość kupionych rzeczy: {{ bgNr }}</h2> -->
           <button @click="removeAllBought">Clear list</button>
