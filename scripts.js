@@ -4,8 +4,8 @@ new Vue({
     newItem: "",
     showList: true,
     showCart: false,
-    // mockItems: ["ser", "mleko", "woda", "chleb", "bułki"],
-    // boughtItems: ["wino", "zapałki", "serwetki"],
+    clue: "msg",
+    clueActive: false,
     mockItems: [],
     boughtItems: []
   },
@@ -18,9 +18,23 @@ new Vue({
     }
   },
   methods: {
+    displayClue: function(txt) {
+      setTimeout(
+        function() {
+          this.clueActive = false;
+        }.bind(this),
+        3500
+      );
+      this.clue = txt;
+      this.clueActive = true;
+    },
     addToShoppingList: function(tag) {
-      if(tag.length > 20){alert('za długie')}
-      this.mockItems.push(tag);
+      if (this.boughtItems.includes(tag)) {
+        this.removeBought(tag);
+      } else {
+        this.mockItems.push(tag);
+        localStorage.setItem("list", JSON.stringify(this.mockItems));
+      }
     },
     submitted: function() {
       if (this.newItem != "") {
@@ -30,25 +44,34 @@ new Vue({
     },
     removeAll: function() {
       this.mockItems = [];
+      this.boughtItems = [];
+      localStorage.removeItem("list");
+      localStorage.removeItem("cart");
     },
     removeAllBought: function() {
       this.boughtItems = [];
+      localStorage.removeItem("cart");
     },
     removeThis: function(el) {
-      this.mockItems.splice(this.mockItems.indexOf(el), 1);
-    },
-    haveThis: function(el, ev) {
-      // ev.target.parentNode.classList.add('addToCart');
       if(this.mockItems.includes(el)) {
+        this.mockItems.splice(this.mockItems.indexOf(el), 1);
+        localStorage.setItem("list", JSON.stringify(this.mockItems));
+      } else {
+        this.displayClue("Nie mogę usunąć, nie ma na liście");
+      }
+    },
+    haveThis: function(el) {
+      if (this.mockItems.includes(el)) {
         this.boughtItems.push(el);
+        localStorage.setItem("cart", JSON.stringify(this.boughtItems));
         this.removeThis(el);
       } else {
-        alert(el)
+        this.displayClue("Nie masz tego na liście zakupów");
       }
-     
     },
     removeBought: function(el) {
       this.boughtItems.splice(this.boughtItems.indexOf(el), 1);
+      localStorage.setItem("cart", JSON.stringify(this.boughtItems));
       this.newItem = el;
       this.submitted();
     },
@@ -69,19 +92,47 @@ new Vue({
       ev.target.classList.contains("cart")
         ? this.toggleVisibilityCart()
         : this.toggleVisibilityList();
+    },
+    retrieveFromStorage: function() {
+      let retrievedData = localStorage.getItem("list");
+      let retrievedCart = localStorage.getItem("cart");
+      // jeżeli jest coś w local storage, to wyświetl
+      if (retrievedData) {
+        let parsed = JSON.parse(retrievedData);
+        parsed.forEach(item => {
+          this.mockItems.push(item);
+        });
+      }
+      if (retrievedCart) {
+        let parsed = JSON.parse(retrievedCart);
+        parsed.forEach(item => {
+          this.boughtItems.push(item);
+        });
+      }
     }
   },
   mounted: function() {
     this.$nextTick(function() {
+      this.retrieveFromStorage();
+      document.querySelector(".list").click();
       if (!annyang) {
-        alert("Your device doesn't support speech recognition");
+        this.displayClue(
+          "Twoja przeglądarka nie obsługuje funkcji rozpoznawania mowy. Użyj Chrome."
+        );
       } else {
         annyang.setLanguage("pl");
-        annyang.start({ autoRestart: true, continuous: true });
+        annyang.start({ autoRestart: true, continuous: false });
         annyang.addCommands({
-          'kup *tag': this.addToShoppingList,
-          'mam *tag': this.haveThis,
-          'koniec': this.removeAll
+          "kup *tag": this.addToShoppingList,
+          "mam *tag": this.haveThis,
+          koszyk: function() {
+            document.querySelector(".cart").click();
+          },
+          lista: function() {
+            document.querySelector(".list").click();
+          },
+          koniec: this.removeAll,
+          "usuń z listy *tag": this.removeThis
         });
       }
     });

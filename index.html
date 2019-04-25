@@ -13,27 +13,28 @@
   <body>
     <section id="app">
       <h1>Twoja lista zakupów</h1>
+      <span class="clue" v-bind:class="{ clueActive: clueActive }">{{ clue }}</span>
       <nav>
         <div class="mainButtons list" @click="toggleVisibility($event)">Lista zakupów <br />({{ itNr }})</div>
         <div class="mainButtons cart" @click="toggleVisibility($event)">Koszyk <br />({{ bgNr }})</div>
       </nav>
       <div v-show="showList">
         <!-- <h2 v-if="itNr !=0">Ilość rzeczy na liście: {{ itNr }}</h2> -->
-        <input placeholder="powiedz co chcesz kupić" v-model="newItem" />
+        <!-- <input placeholder="powiedz co chcesz kupić" v-model="newItem" />
         <p>Testy: {{ newItem }}</p>
-        <button @click="submitted">Submit</button>
+        <button @click="submitted">Submit</button> -->
         <template v-if="mockItems.length != 0">
-          <button @click="removeAll">Clear list</button>
+          <!-- <button @click="removeAll">Clear list</button> -->
           <ul>
             <template v-for="element in mockItems">
               <li>
                 {{ element }}
-                <button @click="removeThis(element)">
+                <!-- <button @click="removeThis(element)">
                   Delete this element
                 </button>
                 <button @click="haveThis(element, $event)">
                   Already got that
-                </button>
+                </button> -->
               </li>
             </template>
           </ul>
@@ -42,14 +43,14 @@
       <div v-show="showCart">
         <template v-if="bgNr != 0">
           <!-- <h2>Ilość kupionych rzeczy: {{ bgNr }}</h2> -->
-          <button @click="removeAllBought">Clear list</button>
+          <!-- <button @click="removeAllBought">Clear list</button> -->
           <ul>
             <template v-for="element in boughtItems">
               <li>
                 {{ element }}
-                <button @click="removeBought(element)">
+                <!-- <button @click="removeBought(element)">
                   I didn't buy after all
-                </button>
+                </button> -->
               </li>
             </template>
           </ul>

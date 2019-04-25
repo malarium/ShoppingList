@@ -1,50 +1,83 @@
-#app{
-    font-family: 'Amatic SC', cursive;
-    font-size: 1.5rem;
-    font-weight: 700;
+#app {
+  font-family: "Amatic SC", cursive;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
-.mainButtons{
-    font-weight: 400;
-    font-size:1.5rem;
+.mainButtons {
+  font-weight: 400;
+  font-size: 1.5rem;
 }
-.boldText{
-    font-weight: 700;
-    font-size:1.8rem;
+.boldText {
+  font-weight: 700;
+  font-size: 1.8rem;
 }
 
 nav {
   display: flex;
   align-items: center;
   div {
-    width: calc(98vw/2);
+    width: calc(98vw / 2);
     padding: 15px 10px;
     text-align: center;
   }
 }
-h1{
-    text-align: center;
-    font-size: 1.5em;
+h1 {
+  text-align: center;
+  font-size: 1.5em;
 }
-ul{
-    padding: 0;
-    li{
-        list-style: none;
-        &:before{
-            content: "";
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-right: 1px solid black;
-            border-bottom: 1px solid black;
-            transform: rotate(-45deg);
-            margin: 0 10px;
-        }
+ul {
+  padding: 0;
+  font-size:2rem;
+  li {
+    list-style: none;
+    &:before {
+      content: "";
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-right: 1px solid black;
+      border-bottom: 1px solid black;
+      transform: rotate(-45deg);
+      margin: 0 10px;
     }
+  }
 }
 @keyframes toCart {
-    from { opacity:1 }
-    to{ opacity:0; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
-.addToCart{
-    animation: toCart 1s forwards;
+@keyframes clue {
+  0% {
+    opacity: 0;
+    color: #000;
+  }
+  10% {
+    opacity: 1;
+    color: #de2012;
+  }
+  90% {
+    opacity: 1;
+    color: #de2012;
+  }
+  100% {
+    opacity: 0;
+    color: #000;
+  }
+}
+.addToCart {
+  animation: toCart 1s forwards;
+}
+.clue {
+  opacity: 0;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  color: #de2012;
+}
+.clueActive {
+  animation: clue 3.5s forwards;
 }
