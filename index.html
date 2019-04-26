@@ -5,18 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>ShoppingList</title>
-    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&amp;subset=latin-ext" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&amp;subset=latin-ext"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.min.css" />
+    <link rel="icon" type="image/png" href="/assets/images/icons/icon-72x72.png" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
     <script src="https://unpkg.com/vue@2.6.10"></script>
   </head>
   <body>
     <section id="app">
       <h1>Twoja lista zakupów</h1>
-      <span class="clue" v-bind:class="{ clueActive: clueActive }">{{ clue }}</span>
+      <span class="clue" v-bind:class="{ clueActive: clueActive }">{{
+        clue
+      }}</span>
       <nav>
-        <div class="mainButtons list" @click="toggleVisibility($event)">Lista zakupów <br />({{ itNr }})</div>
-        <div class="mainButtons cart" @click="toggleVisibility($event)">Koszyk <br />({{ bgNr }})</div>
+        <div class="mainButtons list" @click="toggleVisibility($event)">
+          Lista zakupów <br />({{ itNr }})
+        </div>
+        <div class="mainButtons cart" @click="toggleVisibility($event)">
+          Koszyk <br />({{ bgNr }})
+        </div>
       </nav>
       <div v-show="showList">
         <!-- <h2 v-if="itNr !=0">Ilość rzeczy na liście: {{ itNr }}</h2> -->
