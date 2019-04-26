@@ -1,6 +1,6 @@
-var CACHE_NAME = "ShoppingList-v1.3";
+var CACHE_NAME = "ShoppingList-v1.4";
 var urlsToCache = [
-
+  "//malarium.github.io/ShoppingList/styles.min.css",
   "//fonts.googleapis.com/css?family=Amatic+SC:400,700&amp;subset=latin-ext",
   "//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js",
   "//unpkg.com/vue@2.6.10"
