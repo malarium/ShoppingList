@@ -9,9 +9,6 @@ var urlsToCache = [
   "//malarium.github.io/ShoppingList/assets/right-chev.svg",
   "//fonts.googleapis.com/css?family=Amatic+SC:400,700&amp;subset=latin-ext",
   "//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js",
-  "//unpkg.com/vue@2.6.10",
-  "//fonts.googleapis.com/css?family=Amatic+SC:400,700&amp;subset=latin-ext",
-  "//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js",
   "//unpkg.com/vue@2.6.10"
 ];
 
